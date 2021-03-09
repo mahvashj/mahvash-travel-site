@@ -1,0 +1,29 @@
+.wrapper {
+    
+    overflow: hidden;
+    padding-left: 18px;
+    padding-right: 18px;
+    max-width: 1236px; /*to prevent the text lines being too long*/
+    margin-left: auto; /*to have the content centered*/
+    margin-right: auto;
+
+    &--medium {
+        max-width: 976px;
+    }
+
+    .wrapper {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    &--b-margin {
+        margin-bottom: 1rem;
+        
+        @mixin atSmall {
+          margin-bottom: 3.875rem; 
+            
+        }
+
+
+    }
+}
