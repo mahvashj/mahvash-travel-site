@@ -19,10 +19,11 @@
 
 }
 
+/* Since not using float, 'clearfix' does not serve a purpose. 
 @define-mixin clearfix {
     &::after {
         content: "";
         clear: both;
         display: table;
     }
-}
+} */

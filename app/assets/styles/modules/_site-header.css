@@ -1,0 +1,154 @@
+.site-header {
+    padding: 10px 0;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    transition: background-color .3s ease-out; /* transition the back ground gradually to the new value */
+
+    &--is-expanded {
+        background-color: rgba(47, 85, 114, .3);
+    }
+    
+    @mixin atMedium {
+        background-color: rgba(47, 85, 114, .3);
+    }
+
+    &__btn-container {
+        @mixin atMedium {
+            order: 2;
+         /* float: right;*/
+
+        }
+        
+    }
+
+    &__logo {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $mainBlue;
+        padding: 13px 29px;
+        /*13px 29px*/
+
+        @mixin atMedium {
+            left: auto;
+            transform: translateX(0);
+            padding: 25px 36px;
+        }
+    }
+
+    &__menu__graphic {
+        text-indent: -9999px;
+    }
+
+    &__menu-icon {
+        width: 20px;
+        height: 19px;
+        /* background-color: #FFF; code removed/commented for future reference */
+        position: absolute;
+        z-index: 10;
+        top: 10px;
+        right: 10px;
+
+        /* menu-icon code for bars in the menu AKA the humburger icon! ;) */
+        /* &__top */ 
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 3px;
+            background-color: #FFF;
+            transform-origin: 0 0;
+            transition: transform .3s ease-out;
+        }
+
+        /* middle bar that transforms from opacity 0 to 1 and vice versa */
+        &__middle {
+            position: absolute;
+            top: 8px;
+            left: 0;
+            width: 20px;
+            height: 3px;
+            background-color: #FFF;
+            /* transform-origin: opacity .3s ease-out; 
+            transforming the opacity property to all property */
+            transform: all .3s ease-out;
+            transform-origin: 0 50%; /* left egde & perfect center */
+        }
+
+        /* &__bottom */
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 20px;
+            height: 3px;
+            background-color: #FFF;
+            transform-origin: 0 100%; /* setting bottom left corner as the transform origin
+                                       and 100% being the very vertical bottom.*/
+            transition: transform .3s ease-out;
+        }
+
+        @mixin atMedium {
+            display: none;
+        }
+    }
+
+    &__menu-icon--close-x {
+        &::before {
+            transform: rotate(45deg) scaleX(1.25);
+        }
+
+        /* little but important function for hiding the middle bar in the humburger icon */
+        .site-header__menu-icon__middle {
+            opacity: 0;
+        /* shrinking the middle bar width to zero */
+            transform: scaleX(0);
+        }
+
+        &::after {
+            transform: rotate(-45deg) scaleX(1.25)
+            translateY(1px); /* this method allows for adjusting the vertical positioning
+                             in this case only 1px */
+        }
+    }
+
+
+
+    &__menu-content {
+        /* display: none; commented deleted code for future reference, 'opacity: 0' is added */
+        opacity: 0; /* content is hidden initially, but once the &--is-visible modifier class is added 
+                     the display can gradually fade to 'opacity' of 1. */
+        /* transition: opacity .3s ease-out; changed opacity to all */
+        transform: scale(1.2);
+        transition: all .3s ease-out;
+        position: relative; /* having the z-index as negative value, in next line, have to set position as
+                               relative, other wise browser will not acknowledge the z-index value.*/
+        z-index: -10; /* to have the menu-content sits beneath all the other contents in the page
+                         to prevent the user accidentally click on it. */
+        padding-top: 90px;
+        text-align: center;
+ 
+        @mixin atMedium {
+            display: flex;
+            justify-content: flex-end;
+            opacity: 1;   /* for medium and larger displays the opacity could be 1 from the get go.*/
+            z-index: 1;
+            padding-top: 0; 
+            transform: scale(1);    
+        }
+
+        &--is-visible  {
+            /* display: block; check the note in menu content above */
+            opacity: 1; /* full visibility */
+            z-index: 1;
+            transform: scale(1);
+        }
+    }
+
+}
