@@ -21,9 +21,6 @@ class StickyHeader {
 
     runOnScroll() {
         this.determineScrollDirection()
-
-
-
         if (window.scrollY > 60) { /* if user scrolls down more than 60 pixels
                                     the header becomes a darker shade of blue. */
             this.siteHeader.classList.add("site-header--dark")
@@ -33,10 +30,9 @@ class StickyHeader {
         else {
             this.siteHeader.classList.remove("site-header--dark")
         }
-
         this.pageSections.forEach(el => this.calcSection(el))
         /* calcSection: this method calculates if the current page section has been scrolled to. 
-            When calling this method we are passing to it the current element, 'el'.*/
+            When calling this method, we are passing to it the current element, 'el'.*/
     }
 
     determineScrollDirection() {
@@ -46,7 +42,6 @@ class StickyHeader {
             this.scrollDirection = 'up'
         }
         this.previousScrollY = window.scrollY
-
     }
 
     calcSection(el) {
@@ -60,8 +55,13 @@ class StickyHeader {
             window.scrollY < el.offsetTop + el.offsetHeight) {
                 let scrollPercent = el.getBoundingClientRect().y / this.browserHeight * 100
 
-                if (scrollPercent < 18 && scrollPercent > -0.1) {
+                if (scrollPercent < 18 && scrollPercent > -0.1 && this.scrollDirection == 'down' || 
+                    scrollPercent < 33 && this.scrollDirection == 'up') 
+                    {
                     let matchingLink = el.getAttribute("data-matching-link")
+                    /* 'matchingLink', above, is the css like selector a # and an ID that will select the 
+                     element that we like to give it a css modifier class 
+                     that will change its color (to yellow) */
                     document.querySelectorAll(`.primary-nav a:not(${matchingLink})`).forEach(el => el.classList.remove("is-current-link"))
                     document.querySelector(matchingLink).classList.add("is-current-link")
                 }

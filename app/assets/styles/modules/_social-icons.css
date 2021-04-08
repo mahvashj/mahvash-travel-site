@@ -1,0 +1,26 @@
+.social-icons {
+    text-align: center;
+
+    &__icon {
+        background-color: $mainOrange;
+        display: inline-block;
+        width: 33%;
+        height: 72px;
+        margin: 0 5px 5px 5px; /* reminding again: clock wise order --> T R B L */
+        position: relative;
+
+        @mixin atSmall {
+            width: 72px;
+        }
+
+
+
+        img {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%, -50%); /*pulling the image half up and half to its own size*/
+        }
+    }
+}
